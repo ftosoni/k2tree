@@ -6,18 +6,25 @@ This repository contains a set of functions for working with square sparse boole
 
 ## Prerequisites 
 
-A modern `gcc` supporting `c11` and `make`
+- A modern C compiler supporting C11 (e.g., `gcc`, `clang`).
+- **CMake** version `>= 3.10`.
+- **OpenMP** (optional, recommended for performance).
 
-A cmake version `>= 3.10`
+This project is cross-platform and has been verified on both **POSIX** (Linux/macOS) and **Windows** (via MinGW64).
 
 ## Installation 
 
-Clone/download the repostory then:
+The project uses a standard CMake build workflow. To build all tools:
 
+```bash
+# Create build directory and configure
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+# Build all targets
+cmake --build build --config Release
 ```
-cd libsais; cmake .; make; cd ..
-make release
-```
+
+All executables will be located in the `build` directory (or `build/Release` on some systems) with the `.x` (or `.x.exe` on Windows) extension.
 
 All tools invoked without arguments provide basic usage instructions. 
 
@@ -147,7 +154,7 @@ to compute the product `m1.k2` times `m2.k2` using the extra information `m1.k2.
 
 The option `-e` for `k2mult.x` enables the "on the fly" computation of the subtree information: when the multiplication algorithm reaches a subtree for which no subtree information is available, the information is computed on the fly and later discarded.  
 
-NOTE: to see a real speed improvement in the matrix multiplication algorithm using subtree size info at the moment it is necessary to use the release version (`make release`) since the default version still performs many redundant checks. 
+NOTE: To see a real speed improvement in the matrix multiplication algorithm, build the project in **Release** mode (`-DCMAKE_BUILD_TYPE=Release`).
 
 
 
@@ -319,9 +326,9 @@ The files `k2test.sh`, `k2btest.sh`, `k2square.sh` in the directory `utils` are 
 
 ## Matrices represented as bitarrays
 
-The library also contains the code for compressing and operating on boolean matrices using a bitarray, ie using one bit per entry plus a small overhead. To make the conversion between the two compressed formats very simple, the callable functions (whose prototypes are in `k2.h` and `b128.h`) have the same names. Hence, a program using the k2 format can be transformed into one using the bitarray format by redefining a few constants. See the use of the `B128MAT` compilation constant in the source files `k2bbm.c` and `k2mult.c` and in the `makefile`. Creation of bitarray matrices is currently not supported for textual input matrices. Since bitarray representation does not take advantage of sparsity, the largest supported size is $2^{30}$. 
+The library also contains the code for compressing and operating on boolean matrices using a bitarray, i.e., using one bit per entry plus a small overhead. To make the conversion between the two compressed formats very simple, the callable functions (whose prototypes are in `k2.h` and `b128.h`) have the same names. Hence, a program using the k2 format can be transformed into one using the bitarray format by redefining a few constants. Creation of bitarray matrices is currently not supported for textual input matrices. Since bitarray representation does not take advantage of sparsity, the largest supported size is $2^{30}$. 
 
-The programs `b128sparse.x`, `b128bbm.x` and `b128mult.x` work exactly like  `k2sparse.x`, `k2bbm.x` and `k2mult.x` except that they use the bitarray representation instead of the k2 format. 
+The programs `b128sparse.x`, `b128showinfo.x` and `b128mult.x` work exactly like `k2sparse.x`, `k2showinfo.x` and `k2mult.x` except that they use the bitarray representation instead of the k2 format. 
 
 
 
