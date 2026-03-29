@@ -339,7 +339,7 @@ The programs `b128sparse.x`, `b128showinfo.x` and `b128mult.x` work exactly like
 
 The program `bbmmult.x` computes the product of two `.bbm` matrices using `openmp` to speedup the computation. This tool has been provided mainly as an alternative to the `-c` option to check the correctness of `k2mult.x` and `b128mult.x`.
 
-## Paper
+## Citation
 
 If you use this code, please cite the following paper:
 
