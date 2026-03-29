@@ -184,13 +184,13 @@ size_t matrixcmp(FILE *f,uint64_t m1[], size_t n) {
     }
     else { // check for matching duplicates in m2
       assert(m1[pos]==entry);
-      if(bits[pos/64]&(1UL<<(pos%64))) {
+      if(bits[pos/64]&(1ULL<<(pos%64))) {
         if(Verbose>0) fprintf(stderr,"> Duplicate entry: %ld %ld\n",a,b);
         dup++;
         continue;
       }
-      bits[pos/64] |= (1UL<<(pos%64));
-      assert( (bits[pos/64]&(1UL<<(pos%64))) );
+      bits[pos/64] |= (1ULL<<(pos%64));
+      assert( (bits[pos/64]&(1ULL<<(pos%64))) );
     }
   }
   if(Verbose>0) {
@@ -199,7 +199,7 @@ size_t matrixcmp(FILE *f,uint64_t m1[], size_t n) {
     fprintf(stderr,"> Largest index: %ld\n",maxentry);
   }
   for(size_t i=0;i<n;i++)
-    if( (bits[i/64]&(1UL<<(i%64))) ==0) {
+    if( (bits[i/64]&(1ULL<< (i%64))) ==0) {
       fprintf(stderr,"< unmatched %ld %ld\n",m1[i]>>32,m1[i]&UINT32_MAX);
       err++;
     }
