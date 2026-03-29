@@ -338,3 +338,26 @@ The programs `b128sparse.x`, `b128showinfo.x` and `b128mult.x` work exactly like
 ### Product of bbm matrices with openmp
 
 The program `bbmmult.x` computes the product of two `.bbm` matrices using `openmp` to speedup the computation. This tool has been provided mainly as an alternative to the `-c` option to check the correctness of `k2mult.x` and `b128mult.x`.
+
+## Paper
+
+If you use this code, please cite the following paper:
+
+```bibtex
+@inproceedings{10.1007/978-3-032-05228-5_4,
+author = {Carmona, Gabriel and Manzini, Giovanni},
+title = {Depth First Representations of&nbsp;k2-trees},
+year = {2025},
+isbn = {978-3-032-05227-8},
+publisher = {Springer-Verlag},
+address = {Berlin, Heidelberg},
+url = {https://doi.org/10.1007/978-3-032-05228-5_4},
+doi = {10.1007/978-3-032-05228-5_4},
+abstract = {The k2-tree is a compact data structure designed to efficiently store sparse binary matrices leveraging&nbsp;both sparsity and clustering of nonzero elements. This representation efficiently supports navigational operations and complex binary operations, such as matrix-matrix multiplication, while maintaining space efficiency. The standard k2-tree follows a level-by-level representation, which, while effective, prevents further compression of identical subtrees and it is not cache friendly when accessing individual subtrees. In this work, we introduce some&nbsp;novel depth-first representations of the k2-tree and propose&nbsp;an efficient linear-time algorithm to identify and compress identical subtrees within these structures. Our experimental results show&nbsp;that the use of a depth-first representation is a strategy&nbsp;worth pursuing: for the adjacency matrix of web graphs exploiting&nbsp;the presence of identical subtrees does improve both compression&nbsp;ratio and peak memory usage, and for some matrices, depth-first representations turn out to be faster than the standard k2-tree in computing the matrix-matrix multiplication.},
+booktitle = {String Processing and Information Retrieval: 32nd International Symposium, SPIRE 2025, London, UK, September 8–11, 2025, Proceedings},
+pages = {28–44},
+numpages = {17},
+keywords = {Web graphs, Sparse binary matrices, Succinct&nbsp;tree representations, Compact data structure},
+location = {London, United Kingdom}
+}
+```
