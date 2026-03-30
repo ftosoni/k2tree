@@ -350,7 +350,7 @@ The files `k2test.sh`, `k2btest.sh`, `k2square.sh` in the directory `utils` are 
 
 The library also contains the code for compressing and operating on boolean matrices using a bitarray, i.e., using one bit per entry plus a small overhead. To make the conversion between the two compressed formats very simple, the callable functions (whose prototypes are in `k2.h` and `b128.h`) have the same names. Hence, a program using the k2 format can be transformed into one using the bitarray format by redefining a few constants. Creation of bitarray matrices is currently not supported for textual input matrices. Since bitarray representation does not take advantage of sparsity, the largest supported size is $2^{30}$. 
 
-The programs `b128sparse.x`, `b128showinfo.x` and `b128mult.x` work exactly like `k2sparse.x`, `k2showinfo.x` and `k2mult.x` except that they use the bitarray representation instead of the k2 format. 
+The programs `b128sparse.x`, `b128bbm.x`, `b128showinfo.x` and `b128mult.x` work exactly like `k2sparse.x`, `k2bbm.x`, `k2showinfo.x` and `k2mult.x` except that they use the bitarray representation instead of the k2 format. 
 
 
 
