@@ -148,3 +148,8 @@ target_compile_definitions(unit_test.x PRIVATE K2MAT)
 target_link_libraries(unit_test.x PRIVATE libsais m Threads::Threads)
 
 add_test(NAME BasicUnitTests COMMAND unit_test.x)
+
+# Consistency (Cross-check) test
+add_test(NAME ConsistencyCheck 
+    COMMAND powershell.exe -ExecutionPolicy Bypass -File "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_consistency.ps1" -BuildDir "${CMAKE_CURRENT_BINARY_DIR}" -RootDir "${CMAKE_CURRENT_SOURCE_DIR}"
+)
