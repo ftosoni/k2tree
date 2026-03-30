@@ -26,13 +26,10 @@ fi
 TEMP_DIR="tests/temp_consistency"
 mkdir -p "$TEMP_DIR"
 
-INPUT_TXT="$TEMP_DIR/input.txt"
-TEST_K2="$TEMP_DIR/test.k2"
-TEST_CK2="$TEMP_DIR/test.ck2"
-TEST_B128="$TEMP_DIR/test.b128"
-DECODED_TXT="$TEMP_DIR/decoded.txt"
+# Matrix size for B128
+DIM=16
 
-echo "--- Generating test matrix (16x16 sparse) ---"
+echo "--- Generating test matrix ($DIM x $DIM sparse) ---"
 cat <<EOF > "$INPUT_TXT"
 0 0
 1 1
@@ -53,6 +50,14 @@ cat <<EOF > "$INPUT_TXT"
 0 15
 15 0
 5 10
+3 3
+3 4
+4 3
+4 4
+10 10
+10 11
+11 10
+11 11
 EOF
 
 echo -e "\n--- Testing Standard K2-TREE (.k2) ---"
@@ -62,14 +67,14 @@ echo -e "\n--- Testing Standard K2-TREE (.k2) ---"
 echo "SUCCESS: K2-TREE matches input."
 
 echo -e "\n--- Testing Compressed K2-DFS (.ck2) ---"
-"$K2CPDF" -o "$TEST_CK2" "$TEST_K2"
+"$K2CPDF" -o "$TEST_CK2" -t 16 "$TEST_K2"
 BACKP="${TEST_CK2}.p"
 "$K2SPARSE" -d -I "$BACKP" -o "$DECODED_TXT" "$TEST_CK2"
 "$MATRIXCMP" "$INPUT_TXT" "$DECODED_TXT"
 echo "SUCCESS: K2-DFS (Compressed) matches input."
 
 echo -e "\n--- Testing B128 Baseline (.b128) ---"
-"$B128SPARSE" -o "$TEST_B128" "$INPUT_TXT"
+"$B128SPARSE" -o "$TEST_B128" -s "$DIM" "$INPUT_TXT"
 "$B128SPARSE" -d -o "$DECODED_TXT" "$TEST_B128"
 "$MATRIXCMP" "$INPUT_TXT" "$DECODED_TXT"
 echo "SUCCESS: B128 matches input."

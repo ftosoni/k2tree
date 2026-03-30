@@ -25,8 +25,11 @@ $testCK2 = Join-Path $tempDir "test.ck2"
 $testB128 = Join-Path $tempDir "test.b128"
 $decodedTxt = Join-Path $tempDir "decoded.txt"
 
-Write-Host "--- Generating test matrix (16x16 sparse) ---"
-# Create a 16x16 sparse matrix as text
+# Matrix size for B128
+$dim = 16
+
+Write-Host "--- Generating test matrix ($dim x $dim sparse) ---"
+# Create a $dim x $dim sparse matrix as text
 @"
 0 0
 1 1
@@ -47,6 +50,14 @@ Write-Host "--- Generating test matrix (16x16 sparse) ---"
 0 15
 15 0
 5 10
+3 3
+3 4
+4 3
+4 4
+10 10
+10 11
+11 10
+11 11
 "@ | Out-File -FilePath $inputTxt -Encoding ascii
 
 Write-Host "`n--- Testing Standard K2-TREE (.k2) ---"
@@ -60,14 +71,14 @@ Write-Host "`n--- Testing Compressed K2-DFS (.ck2) ---"
 # 2. Compress to .ck2 (using k2cpdf)
 # 3. Decompress .ck2 (using k2sparse -d -I)
 # 4. Compare
-& $k2cpdf -o $testCK2 $testK2
+& $k2cpdf -o $testCK2 -t 16 $testK2
 $backp = $testCK2 + ".p"
 & $k2sparse -d -I $backp -o $decodedTxt $testCK2
 & $matrixcmp $inputTxt $decodedTxt
 Write-Host "SUCCESS: K2-DFS (Compressed) matches input."
 
 Write-Host "`n--- Testing B128 Baseline (.b128) ---"
-& $b128sparse -o $testB128 $inputTxt
+& $b128sparse -o $testB128 -s $dim $inputTxt
 & $b128sparse -d -o $decodedTxt $testB128
 & $matrixcmp $inputTxt $decodedTxt
 Write-Host "SUCCESS: B128 matches input."
