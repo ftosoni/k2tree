@@ -14,12 +14,20 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Compile libsais
-      run:
-        cd libsais; cmake .; make; cd ..
+    - name: install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libomp-dev
 
-    - name: make
-      run: make  
+    - name: cmake configure
+      run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+    - name: cmake build
+      run: cmake --build build --config Release
+
+    - name: prepare binaries
+      # Copy binaries to root to maintain compatibility with test scripts
+      run: cp build/*.x . || true
         
     - name: run
       run: ./prodtest.sh web cnr80k eu80k goo80k goo120k
