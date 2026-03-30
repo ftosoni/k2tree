@@ -30,18 +30,25 @@ All tools invoked without arguments provide basic usage instructions.
 
 ## Running Tests
 
-The project includes a suite of unit tests to verify the core k2tree logic. To build and run the tests:
+The project includes as suite of automated tests to verify functional correctness and format consistency.
 
+#### Using CTest (Recommended)
+You can run all tests using the project's build system:
 ```bash
-# Build the test suite
-cmake --build build --target unit_test.x
-
-# Run all tests using CTest
-ctest --test-dir build --output-on-failure
-
-# Alternatively, run the test binary directly
-./build/unit_test.x.exe
+cmake --build build --config Release
+ctest --test-dir build --output-on-failure -C Release
 ```
+
+#### Manual Testing
+- **Unit Tests**: Run the basic unit test suite directly:
+  ```bash
+  ./build/unit_test.x
+  ```
+- **Consistency Tests**: Cross-check different representations (Standard, Compressed, B128):
+  - **Windows (PowerShell)**: `powershell -File tests/test_consistency.ps1 -BuildDir build`
+  - **Linux/bash**: `bash tests/test_consistency.sh build`
+
+These tests ensure that all k2tree formats represent the exact same matrix bit-for-bit.
 
 ## Getting started
 
