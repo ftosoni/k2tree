@@ -12,7 +12,7 @@ ROOT_DIR=${2:-".."}
 K2SPARSE="$BUILD_DIR/k2sparse.x"
 K2CPDF="$BUILD_DIR/k2cpdf.x"
 B128SPARSE="$BUILD_DIR/b128sparse.x"
-MATRIXCMP="$BUILD_DIR/matrixcmp.x"
+MATRIXCMP="$BUILD_DIR/test_matrixcmp.x"
 
 # Compatibility check for Windows (.exe suffix)
 if [[ ! -f "$K2SPARSE" && -f "$K2SPARSE.exe" ]]; then

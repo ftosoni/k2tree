@@ -122,7 +122,7 @@ Invoked without the `-d` or `-c` switch `k2sparse.x` compresses a textual matrix
 
 When invoked with `-d` the input file must be a k2 matrix which is then expanded into the textual format. 
 
-When invoked with `-c` the program compresses the input matrix, then decompresses it and verify that the decompressed matrix matches the original matrix. Since the order of the entries in the textual file is arbitrary the verification involves sorting and searching and is done invoking the tool `matrixcmp.x`.
+When invoked with `-c` the program compresses the input matrix, then decompresses it and verify that the decompressed matrix matches the original matrix. Since the order of the entries in the textual file is arbitrary the verification involves sorting and searching and is done invoking the tool `test_matrixcmp.x`.
 
 The option `-m` can be used only in compression, currently only with one of the two values `2` or `4`. This parameter is the size of the matrices stored at the leaf of the $k^2$-tree (except the leaves representing the submatrices of all 1's which can be of any size). A large leaf size usually yields larger files but improves the running time for the aritmetic operations over the matrices (as the tree is shallower). The value of the parameter `-m` is stored in the k2 compressed file so it does not have to be provided for decompression.
 Other command line options will be explained after we discuss the different compression formats. 
