@@ -28,6 +28,21 @@ All executables will be located in the `build` directory (or `build/Release` on 
 
 All tools invoked without arguments provide basic usage instructions. 
 
+## Running Tests
+
+The project includes a suite of unit tests to verify the core k2tree logic. To build and run the tests:
+
+```bash
+# Build the test suite
+cmake --build build --target unit_test.x
+
+# Run all tests using CTest
+ctest --test-dir build --output-on-failure
+
+# Alternatively, run the test binary directly
+./build/unit_test.x.exe
+```
+
 ## Getting started
 
 ### TL;DR
