@@ -373,7 +373,7 @@ uint64_t k2dfs_sizes_limit(size_t size, const k2mat_t *m, size_t *pos, vu64_t *z
     z->n = zn_save;                        // no subtree information
   }
   if(*pos != pos_save + (subtree_size&TSIZEMASK)) { // double check size
-    fprintf(stderr,"Scanned size: %zu, computed size: %lu\n", *pos-pos_save,subtree_size&TSIZEMASK); 
+    fprintf(stderr,"Scanned size: %zu, computed size: %llu\n", *pos-pos_save,(unsigned long long)(subtree_size&TSIZEMASK)); 
     quit("Error or overflow in size encoding",__LINE__,__FILE__);
   } 
   return subtree_size;
@@ -430,7 +430,7 @@ uint64_t k2dfs_sizes_limit(size_t size, const k2mat_t *m, size_t *pos, vu64_t *z
     z->n = zn_save;                        // no subtree information
   }
   if(*pos != pos_save + (subtree_size&TSIZEMASK)) { // double check size
-    fprintf(stderr,"Scanned size: %zu, computed size: %lu\n", *pos-pos_save,subtree_size&TSIZEMASK); 
+    fprintf(stderr,"Scanned size: %zu, computed size: %llu\n", *pos-pos_save,(unsigned long long)(subtree_size&TSIZEMASK)); 
     quit("Error or overflow in size encoding",__LINE__,__FILE__);
   } 
   return subtree_size;
