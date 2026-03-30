@@ -56,14 +56,14 @@ do
   $timecmd -f"$tf" ./k2unary.x -o $f.4  $f.k4 
 
   echo "==== check k2+0 matrix  ==="  
-  $timecmd -f"$tf" ./matrixcmp.x $f.2.0.txt $f
+  $timecmd -f"$tf" ./test_matrixcmp.x $f.2.0.txt $f
   echo "==== check k2+I matrix  ==="  
-  $timecmd -f"$tf" ./matrixcmp.x $f.2.1.txt $f.sparse.1
+  $timecmd -f"$tf" ./test_matrixcmp.x $f.2.1.txt $f.sparse.1
 
   echo "==== check k4+0 matrix  ==="  
-  $timecmd -f"$tf" ./matrixcmp.x $f.4.0.txt $f
+  $timecmd -f"$tf" ./test_matrixcmp.x $f.4.0.txt $f
   echo "==== check k4+I matrix  ==="  
-  $timecmd -f"$tf" ./matrixcmp.x $f.4.1.txt $f.sparse.1
+  $timecmd -f"$tf" ./test_matrixcmp.x $f.4.1.txt $f.sparse.1
 
   # delete some temp file
   rm -f  $f.4.0.txt $f.4.1.txt $f.4.1sq.txt
@@ -82,12 +82,12 @@ do
   $timecmd -f"$tf" ./k2sum.x -o $f.sum.k2 $f.k2 $f.tr.k2 
   echo "===== check k2 + k2^t ======="
   $timecmd -f"$tf" ./k2sparse.x -d -o sparse.sum $f.sum.k2
-  $timecmd -f"$tf" ./matrixcmp.x sparse.sum sparse.sym
+  $timecmd -f"$tf" ./test_matrixcmp.x sparse.sum sparse.sym
   echo "===== compute k4^t + k4 ======="
   $timecmd -f"$tf" ./k2sum.x -o $f.sum.k4 $f.tr.k4  $f.k4
   echo "===== check k4^t + k4 ======="
   $timecmd -f"$tf" ./k2sparse.x -d -o sparse.sum $f.sum.k4
-  $timecmd -f"$tf" ./matrixcmp.x sparse.sum sparse.sym
+  $timecmd -f"$tf" ./test_matrixcmp.x sparse.sum sparse.sym
 
   # delete some temp file
   rm -f  sparse.tr $f.k4 $f.tr.k4 $f.sum.k4 
@@ -98,18 +98,18 @@ do
   if [ -e $f.ck2.p ]; then
     echo "== uncompress and test ck2 matrix"
     $timecmd -f"$tf" ./k2sparse.x -d $f.ck2 -I $f.ck2.p -o sparse.ck2
-    $timecmd -f"$tf" ./matrixcmp.x $f sparse.ck2
+    $timecmd -f"$tf" ./test_matrixcmp.x $f sparse.ck2
     echo "== unary operations"
     $timecmd -f"$tf" ./k2unary.x -o $f.2 -I $f.ck2.p $f.ck2 
     echo "== check ck2+0 matrix"  
-    $timecmd -f"$tf" ./matrixcmp.x $f.2.0.txt $f
+    $timecmd -f"$tf" ./test_matrixcmp.x $f.2.0.txt $f
     echo "== check ck2+I matrix"  
-    $timecmd -f"$tf" ./matrixcmp.x $f.2.1.txt $f.sparse.1
+    $timecmd -f"$tf" ./test_matrixcmp.x $f.2.1.txt $f.sparse.1
     echo "== sum k2^t + ck2"
     $timecmd -f"$tf" ./k2sum.x -o $f.sum.k2 -J $f.ck2.p $f.tr.k2 $f.ck2
     echo "== check k2 + k2^t"
     $timecmd -f"$tf" ./k2sparse.x -d -o sparse.sum $f.sum.k2
-    $timecmd -f"$tf" ./matrixcmp.x sparse.sum sparse.sym
+    $timecmd -f"$tf" ./test_matrixcmp.x sparse.sum sparse.sym
   else
     echo "===== no backpointers for file $f"
   fi
