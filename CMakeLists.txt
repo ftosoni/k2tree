@@ -107,7 +107,7 @@ set(B128_EXECUTABLES
     b128sparse 
     b128mult 
     b128showinfo 
-    b128bbm
+    # b128bbm
     b128unary 
     b128tclosure
 )
