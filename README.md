@@ -42,7 +42,7 @@ ctest --test-dir build --output-on-failure -C Release
 #### Manual Testing
 - **Unit Tests**: Run the basic unit test suite directly:
   ```bash
-  ./build/unit_test.x
+  ./build/test_unit.x
   ```
 - **Consistency Tests**: Cross-check different representations (Standard, Compressed, B128):
   - **Windows (PowerShell)**: `powershell -File tests/test_consistency.ps1 -BuildDir build`
