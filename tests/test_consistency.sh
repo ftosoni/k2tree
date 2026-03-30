@@ -56,21 +56,21 @@ cat <<EOF > "$INPUT_TXT"
 EOF
 
 echo -e "\n--- Testing Standard K2-TREE (.k2) ---"
-"$K2SPARSE" "$INPUT_TXT" -o "$TEST_K2"
-"$K2SPARSE" -d "$TEST_K2" -o "$DECODED_TXT"
+"$K2SPARSE" -o "$TEST_K2" "$INPUT_TXT"
+"$K2SPARSE" -d -o "$DECODED_TXT" "$TEST_K2"
 "$MATRIXCMP" "$INPUT_TXT" "$DECODED_TXT"
 echo "SUCCESS: K2-TREE matches input."
 
 echo -e "\n--- Testing Compressed K2-DFS (.ck2) ---"
 "$K2CPDF" -o "$TEST_CK2" "$TEST_K2"
 BACKP="${TEST_CK2}.p"
-"$K2SPARSE" -d "$TEST_CK2" -I "$BACKP" -o "$DECODED_TXT"
+"$K2SPARSE" -d -I "$BACKP" -o "$DECODED_TXT" "$TEST_CK2"
 "$MATRIXCMP" "$INPUT_TXT" "$DECODED_TXT"
 echo "SUCCESS: K2-DFS (Compressed) matches input."
 
 echo -e "\n--- Testing B128 Baseline (.b128) ---"
-"$B128SPARSE" "$INPUT_TXT" -o "$TEST_B128"
-"$B128SPARSE" -d "$TEST_B128" -o "$DECODED_TXT"
+"$B128SPARSE" -o "$TEST_B128" "$INPUT_TXT"
+"$B128SPARSE" -d -o "$DECODED_TXT" "$TEST_B128"
 "$MATRIXCMP" "$INPUT_TXT" "$DECODED_TXT"
 echo "SUCCESS: B128 matches input."
 

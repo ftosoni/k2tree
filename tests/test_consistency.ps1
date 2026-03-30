@@ -50,11 +50,8 @@ Write-Host "--- Generating test matrix (16x16 sparse) ---"
 "@ | Out-File -FilePath $inputTxt -Encoding ascii
 
 Write-Host "`n--- Testing Standard K2-TREE (.k2) ---"
-# We use the built-in -c flag of k2sparse which does: encode -> decode -> matrixcmp
-# It expects matrixcmp.x to be in the same directory as the script or PATH
-# But we can also do it manually for more control.
-& $k2sparse $inputTxt -o $testK2
-& $k2sparse -d $testK2 -o $decodedTxt
+& $k2sparse -o $testK2 $inputTxt
+& $k2sparse -d -o $decodedTxt $testK2
 & $matrixcmp $inputTxt $decodedTxt
 Write-Host "SUCCESS: K2-TREE matches input."
 
@@ -65,13 +62,13 @@ Write-Host "`n--- Testing Compressed K2-DFS (.ck2) ---"
 # 4. Compare
 & $k2cpdf -o $testCK2 $testK2
 $backp = $testCK2 + ".p"
-& $k2sparse -d $testCK2 -I $backp -o $decodedTxt
+& $k2sparse -d -I $backp -o $decodedTxt $testCK2
 & $matrixcmp $inputTxt $decodedTxt
 Write-Host "SUCCESS: K2-DFS (Compressed) matches input."
 
 Write-Host "`n--- Testing B128 Baseline (.b128) ---"
-& $b128sparse $inputTxt -o $testB128
-& $b128sparse -d $testB128 -o $decodedTxt
+& $b128sparse -o $testB128 $inputTxt
+& $b128sparse -d -o $decodedTxt $testB128
 & $matrixcmp $inputTxt $decodedTxt
 Write-Host "SUCCESS: B128 matches input."
 
