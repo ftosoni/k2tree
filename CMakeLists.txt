@@ -136,3 +136,15 @@ endif()
 # matrixcmp.x: simple textual comparison tool
 add_executable(matrixcmp.x matrixcmp.c)
 target_link_libraries(matrixcmp.x PRIVATE m)
+
+# -----------------------------------------------------------------------------
+# Unit Testing (CTest)
+# -----------------------------------------------------------------------------
+enable_testing()
+
+add_executable(unit_test.x tests/unit_tests.c ${K2_CORE_SOURCES})
+target_include_directories(unit_test.x PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_compile_definitions(unit_test.x PRIVATE K2MAT)
+target_link_libraries(unit_test.x PRIVATE libsais m Threads::Threads)
+
+add_test(NAME BasicUnitTests COMMAND unit_test.x)
