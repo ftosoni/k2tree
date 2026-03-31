@@ -40,5 +40,38 @@
     "programmingLanguage": "C",
     "developmentStatus": "active",
     "issueTracker": "https://github.com/acubeLab/k2tree/issues",
-    "referencePublication": "https://doi.org/10.1007/978-3-032-05228-5_4"
+    "referencePublication": "https://doi.org/10.1007/978-3-032-05228-5_4",
+    "citation": [
+        {
+            "@type": "ScholarlyArticle",
+            "@id": "https://doi.org/10.1007/978-3-032-05228-5_4",
+            "name": "Depth First Representations of k2-trees",
+            "datePublished": "2025",
+            "author": [
+                {
+                    "@type": "Person",
+                    "familyName": "Carmona",
+                    "givenName": "Gabriel"
+                },
+                {
+                    "@type": "Person",
+                    "familyName": "Manzini",
+                    "givenName": "Giovanni"
+                }
+            ],
+            "isPartOf": {
+                "@type": "PublicationEvent",
+                "name": "String Processing and Information Retrieval: 32nd International Symposium, SPIRE 2025, Proceedings"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Springer-Verlag",
+                "location": "Berlin, Heidelberg"
+            },
+            "pageStart": "28",
+            "pageEnd": "44",
+            "identifier": "10.1007/978-3-032-05228-5_4",
+            "url": "https://doi.org/10.1007/978-3-032-05228-5_4"
+        }
+    ]
 }
