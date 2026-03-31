@@ -2,10 +2,9 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: ' k2tree'
+title: 'k2tree'
 message: >-
-  A k²-tree depth-first-based representation of a Boolean
-  matrix 
+  If you use this software, please cite the paper from SPIRE 2025 as specified in preferred-citation.
 type: software
 authors:
   - given-names: Gabriel
@@ -22,10 +21,25 @@ authors:
       Department of Computer Science, University of Pisa,
       Pisa, Italy
     orcid: 'https://orcid.org/0000-0002-5047-0196'
-identifiers:
-  - type: doi
-    value: 10.1007/978-3-032-05228-5_4
-    description: reference publication
+preferred-citation:
+  type: conference-paper
+  authors:
+    - family-names: "Carmona"
+      given-names: "Gabriel"
+    - family-names: "Manzini"
+      given-names: "Giovanni"
+  title: "Depth First Representations of k2-trees"
+  year: 2025
+  collection-title: "String Processing and Information Retrieval: 32nd International Symposium, SPIRE 2025, Proceedings"
+  conference:
+    name: "SPIRE 2025"
+    location: "London, UK"
+  start: 28 # Pagina iniziale dal BibTeX
+  end: 44   # Pagina finale dal BibTeX
+  doi: "10.1007/978-3-032-05228-5_4"
+  publisher:
+    name: "Springer-Verlag"
+    address: "Berlin, Heidelberg"
 repository-code: 'https://github.com/acubeLab/k2tree'
 abstract: >-
   This repository contains a set of functions for working
