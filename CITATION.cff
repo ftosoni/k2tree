@@ -1,0 +1,42 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: ' k2tree'
+message: >-
+  A k²-tree depth-first-based representation of a Boolean
+  matrix 
+type: software
+authors:
+  - given-names: Gabriel
+    family-names: Carmona
+    email: gabriel.carmona@phd.unipi.it
+    affiliation: >-
+      Department of Computer Science, University of Pisa,
+      Pisa, Italy
+    orcid: 'https://orcid.org/0009-0004-1454-2940'
+  - given-names: Giovanni
+    family-names: Manzini
+    email: giovanni.manzini@unipi.it
+    affiliation: >-
+      Department of Computer Science, University of Pisa,
+      Pisa, Italy
+    orcid: 'https://orcid.org/0000-0002-5047-0196'
+identifiers:
+  - type: doi
+    value: 10.1007/978-3-032-05228-5_4
+    description: reference publication
+repository-code: 'https://github.com/acubeLab/k2tree'
+abstract: >-
+  This repository contains a set of functions for working
+  with square sparse boolean matrices represented with a
+  k²-tree. Matrix sum and product operations use Boolean
+  algebra with the scalar operations + and * replaced by
+  logical "or" and "and", respectively. A version supporting
+  Z_2 arithmetic can be easily derived if needed.
+keywords:
+  - Web graphs
+  - Sparse binary matrices
+  - Succinct tree representations
+  - Compact data structures
+license: Apache-2.0
